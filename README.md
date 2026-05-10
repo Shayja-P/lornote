@@ -32,12 +32,6 @@ Firefox extension for taking timestamped notes on YouTube videos. Local-first, n
 
 Resets when Firefox restarts.
 
-### Permanent
-
-Submit `lornote.zip` (built from the repo root) to
-[addons.mozilla.org](https://addons.mozilla.org/developers/) for signing,
-or use Firefox Developer Edition with `xpinstall.signatures.required = false`.
-
 ## Build a signed-ready ZIP
 
 ```bash
