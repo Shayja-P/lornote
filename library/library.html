@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lornote — Library</title>
+    <link rel="stylesheet" href="library.css" />
+  </head>
+  <body>
+    <aside class="side">
+      <div class="brand">
+        <img src="../icons/icon.svg" width="28" height="28" alt="" />
+        <span>Lornote</span>
+      </div>
+      <nav class="nav" id="nav">
+        <button class="nav-item active" data-view="all">
+          <span class="ico">▣</span> All notes
+        </button>
+        <button class="nav-item" data-view="uncategorized">
+          <span class="ico">▢</span> Uncategorized
+        </button>
+        <div class="section-label">
+          Video folders
+          <button id="new-vfolder" class="ico-add" title="New video folder">+</button>
+        </div>
+        <div id="vfolders" class="folders"></div>
+        <div class="section-label">Note folders</div>
+        <div id="folders" class="folders"></div>
+        <div class="section-label">Tags</div>
+        <div id="tags" class="tags"></div>
+        <div class="side-actions">
+          <button id="new-folder" class="btn">+ New note folder</button>
+          <button id="import" class="btn alt">Import</button>
+          <button id="export" class="btn alt">Export</button>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="main">
+      <header class="head">
+        <div class="head-title">
+          <span id="view-title">All notes</span>
+          <span class="counter" id="counter"></span>
+        </div>
+        <div class="head-tools">
+          <div class="layout-switch" id="layout-switch" role="group" aria-label="Layout">
+            <button data-cols="1" title="List">≡</button>
+            <button data-cols="2" title="2 columns">▤</button>
+            <button data-cols="3" title="3 columns">▦</button>
+            <button data-cols="4" title="4 columns">▧</button>
+            <button data-cols="5" title="5 columns">▨</button>
+            <button data-cols="6" title="6 columns">▩</button>
+          </div>
+          <div class="head-search">
+            <input id="search" type="search" placeholder="Search title, text, tag…" />
+          </div>
+        </div>
+      </header>
+      <section id="results" class="results"></section>
+      <section id="empty" class="empty hidden">
+        <div class="empty-card">
+          <img src="../icons/icon.svg" width="48" height="48" alt="" />
+          <h2>Welcome to Lornote</h2>
+          <ol>
+            <li>Open any YouTube video.</li>
+            <li>Click the “Notes” button on the right edge.</li>
+            <li>Add timestamped notes — they show up here.</li>
+          </ol>
+          <a class="btn primary" href="https://www.youtube.com" target="_blank" rel="noopener">Go to YouTube →</a>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="import-dialog">
+      <form method="dialog" class="dlg">
+        <h3>Import notes</h3>
+        <p class="muted">
+          Paste a text block (timestamps + URL) <strong>or</strong> upload a JSON backup
+          (e.g. <code>browser.storage.local</code> dump from another notes extension).
+        </p>
+        <input type="file" id="import-file" accept=".json,application/json" />
+        <textarea id="import-text" rows="10" placeholder="(4) My video title&#10;https://youtube.com/watch?v=...&#10;Notes:&#10;[1:00] first note..."></textarea>
+        <div class="dlg-row">
+          <button class="btn alt" value="cancel">Cancel</button>
+          <button class="btn primary" id="do-import" value="default">Import</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="folder-dialog">
+      <form method="dialog" class="dlg">
+        <h3>New note folder</h3>
+        <input id="folder-name" type="text" placeholder="Folder name" />
+        <div class="dlg-row">
+          <button class="btn alt" value="cancel">Cancel</button>
+          <button class="btn primary" id="do-folder" value="default">Create</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="vfolder-dialog">
+      <form method="dialog" class="dlg">
+        <h3 id="vf-title">Video folder</h3>
+        <input id="vf-name" type="text" placeholder="Folder name" />
+        <textarea id="vf-desc" rows="6" placeholder="Description (optional)"></textarea>
+        <div class="dlg-row">
+          <button class="btn alt" type="button" id="vf-delete" style="margin-right:auto;">Delete</button>
+          <button class="btn alt" value="cancel">Cancel</button>
+          <button class="btn primary" value="default">Save</button>
+        </div>
+      </form>
+    </dialog>
+
+    <script src="library.js"></script>
+  </body>
+</html>
